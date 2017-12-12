@@ -47,6 +47,6 @@ class ConversationUser extends AbstractMapper
           FROM `conversation_user`
           WHERE `user_id` = :u1 AND `conversation_id` = :c1)';
 
-        return $this->requestPdo($sql, [':u' => $user, ':c' => $conversation_id, ':u1' => $user, ':c1' => $conversation_id]);
+        return $this->requestPdo($sql, ['u' => $user, 'c' => $conversation_id, 'u1' => $user, 'c1' => $conversation_id]);
     }
 }
