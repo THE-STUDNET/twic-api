@@ -115,8 +115,9 @@ class Event extends AbstractService
             ->setId(++ self::$id)
             ->setVersion('2.0');
 
-        $this->getClient()->setHeaders([ 'Authorization' => $authorization]);
         $client = new \Zend\Json\Server\Client($this->container->get('config')['node']['addr'], $this->getClient());
+        $client->getHttpClient()->setHeaders([ 'Authorization' => $authorization]);
+
         try {
             $rep = $client->doRequest($request);
             if ($rep->isError()) {// @codeCoverageIgnore
@@ -143,7 +144,7 @@ class Event extends AbstractService
         return $client;
     }
 
- 
+
     // /////////////// EVENT //////////////////////
 
     /**
